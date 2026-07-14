@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>وکیل علی‌زاده</title>
+    <title>وکیل فاطمه کرامتی</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
@@ -31,7 +31,7 @@
             position: relative;
         }
 
-        /* ===== نوار بالایی (Header) ===== */
+        /* ===== نوار بالایی ===== */
         #app-header {
             position: sticky;
             top: 0;
@@ -133,7 +133,134 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== منوی پایین گرد (همون قبلی) ===== */
+        /* ===== صفحه‌ی حساب کاربری ===== */
+        .account-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            margin-bottom: 16px;
+        }
+
+        .account-card .title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .account-card .subtitle {
+            font-size: 13px;
+            color: #8A8A9A;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+
+        .form-group .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f5f7fb;
+            border-radius: 14px;
+            padding: 0 14px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .form-group .input-wrapper:focus-within {
+            border-color: #6C63FF;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.06);
+        }
+
+        .form-group .input-wrapper i {
+            color: #8A8A9A;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .form-group .input-wrapper input {
+            width: 100%;
+            padding: 14px 0;
+            border: none;
+            background: transparent;
+            font-size: 15px;
+            color: #1a1a2e;
+            outline: none;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .form-group .input-wrapper input::placeholder {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6C63FF, #4A3DBF);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(108, 99, 255, 0.3);
+            margin-top: 4px;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(108, 99, 255, 0.2);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: #6C63FF;
+            border: 2px solid #6C63FF;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.97);
+            background: rgba(108, 99, 255, 0.04);
+        }
+
+        .code-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #8A8A9A;
+            margin-top: 12px;
+        }
+
+        .code-hint span {
+            color: #6C63FF;
+            font-weight: 600;
+        }
+
+        /* ===== منوی پایین گرد ===== */
         #bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -228,7 +355,7 @@
             opacity: 0.6;
         }
 
-        /* ===== صفحات خالی ===== */
+        /* ===== صفحات خالی (دیگر صفحات) ===== */
         .page-placeholder {
             text-align: center;
             padding: 60px 20px;
@@ -253,11 +380,11 @@
             <div class="header-left">
                 <div class="header-logo">⚖️</div>
                 <div class="header-brand">
-                    وکیل علی‌زاده
+                    فاطمه کرامتی
                     <span>| وکالت</span>
                 </div>
             </div>
-            <div class="header-center" id="page-title">خانه</div>
+            <div class="header-center" id="page-title">حساب کاربری</div>
             <div class="header-right">
                 <button class="header-btn" onclick="alert('منوی تنظیمات')">
                     <i class="fas fa-ellipsis-vertical"></i>
@@ -268,7 +395,7 @@
         <!-- ===== صفحات ===== -->
 
         <!-- صفحه خانه -->
-        <div id="page-home" class="page active">
+        <div id="page-home" class="page">
             <div class="page-placeholder">
                 <i class="fas fa-home"></i>
                 <p>صفحه‌ی خانه</p>
@@ -303,12 +430,39 @@
             </div>
         </div>
 
-        <!-- صفحه حساب کاربری -->
-        <div id="page-account" class="page">
-            <div class="page-placeholder">
-                <i class="fas fa-user"></i>
-                <p>حساب کاربری</p>
-                <p style="font-size:14px; color:#ccc;">به‌زودی تکمیل می‌شود</p>
+        <!-- ===== صفحه حساب کاربری (فقط فرم ورود) ===== -->
+        <div id="page-account" class="page active">
+            <div class="account-card">
+                <div class="title">🔐 ورود به حساب</div>
+                <div class="subtitle">برای دسترسی به نوبت‌ها و اطلاعات شخصی وارد شوید</div>
+
+                <div class="form-group">
+                    <label>شماره موبایل</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" placeholder="۰۹۱۲ ۳۴۵ ۶۷۸۹" value="۰۹۱۲۳۴۵۶۷۸۹">
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="alert('کد تایید به شماره شما ارسال شد')">
+                    <i class="fas fa-paper-plane"></i> ارسال کد تایید
+                </button>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label>کد تایید</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-shield-alt"></i>
+                        <input type="text" placeholder="کد ۴ رقمی را وارد کنید" maxlength="4">
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="alert('✅ خوش آمدید! وارد حساب شدید.')">
+                    <i class="fas fa-check"></i> تایید و ورود
+                </button>
+
+                <div class="code-hint">
+                    <span>🔹</span> کد تایید به شماره شما پیامک می‌شود
+                </div>
             </div>
         </div>
 
@@ -316,7 +470,7 @@
 
     <!-- ===== منوی پایین ===== -->
     <nav id="bottom-nav">
-        <button class="nav-item active" data-page="page-home" data-title="خانه">
+        <button class="nav-item" data-page="page-home" data-title="خانه">
             <span class="nav-icon-wrapper">
                 <i class="fas fa-house"></i>
             </span>
@@ -340,7 +494,7 @@
             </span>
             <span class="nav-label">تماس</span>
         </button>
-        <button class="nav-item" data-page="page-account" data-title="حساب کاربری">
+        <button class="nav-item active" data-page="page-account" data-title="حساب کاربری">
             <span class="nav-icon-wrapper">
                 <i class="fas fa-user"></i>
             </span>
@@ -356,16 +510,13 @@
 
             navItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    // تغییر منو
                     navItems.forEach(n => n.classList.remove('active'));
                     this.classList.add('active');
 
-                    // تغییر صفحه
                     pages.forEach(p => p.classList.remove('active'));
                     const pageId = this.dataset.page;
                     document.getElementById(pageId).classList.add('active');
 
-                    // تغییر عنوان نوار بالایی
                     const title = this.dataset.title;
                     if (title) {
                         pageTitle.textContent = title;
