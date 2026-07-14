@@ -18,7 +18,7 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            padding-bottom: 80px;
+            padding-bottom: 85px;
         }
 
         #app {
@@ -45,7 +45,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== منوی پایین ===== */
+        /* ===== منوی پایین حرفه‌ای (شبیه سامسونگ/گوگل) ===== */
         #bottom-nav {
             position: fixed;
             bottom: 0;
@@ -53,14 +53,17 @@
             right: 0;
             max-width: 430px;
             margin: 0 auto;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
-            padding: 8px 0 12px;
-            border-top: 1px solid rgba(0,0,0,0.06);
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.04);
+            align-items: center;
+            padding: 6px 0 12px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.06);
             z-index: 200;
+            height: 72px;
         }
 
         .nav-item {
@@ -69,44 +72,74 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 2px;
-            padding: 4px 12px;
+            padding: 4px 16px;
             cursor: pointer;
-            transition: 0.2s;
-            opacity: 0.5;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
+            opacity: 0.5;
+            min-width: 56px;
+            border-radius: 16px;
         }
 
         .nav-item.active {
             opacity: 1;
         }
 
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            top: -1px;
-            width: 20px;
-            height: 3px;
-            background: #6C63FF;
-            border-radius: 0 0 10px 10px;
+        /* دایره‌ی پشت آیکون فعال (مثل سامسونگ) */
+        .nav-item.active .nav-icon-wrapper {
+            background: linear-gradient(135deg, #6C63FF, #4A3DBF);
+            color: #fff;
+            transform: scale(1);
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.35);
         }
 
-        .nav-icon {
+        .nav-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.92);
+            background: transparent;
+            color: #8A8A9A;
             font-size: 22px;
-            line-height: 1;
+        }
+
+        .nav-item:active .nav-icon-wrapper {
+            transform: scale(0.88);
         }
 
         .nav-label {
             font-size: 10px;
-            font-weight: 600;
-            color: #1a1a2e;
+            font-weight: 500;
+            color: #8A8A9A;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+            margin-top: 1px;
         }
 
         .nav-item.active .nav-label {
-            color: #6C63FF;
+            color: #4A3DBF;
+            font-weight: 600;
         }
 
-        /* ===== صفحات خالی (فقط برای نمایش) ===== */
+        /* نقطه‌ی کوچک زیر آیتم فعال (مثل گوگل) */
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            width: 6px;
+            height: 6px;
+            background: #6C63FF;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        /* ===== صفحات خالی (همون placeholder) ===== */
         .page-placeholder {
             text-align: center;
             padding: 60px 20px;
@@ -173,47 +206,51 @@
 
     </div>
 
-    <!-- منوی پایین -->
+    <!-- ===== منوی پایین حرفه‌ای ===== -->
     <nav id="bottom-nav">
         <button class="nav-item active" data-page="page-home">
-            <span class="nav-icon">🏠</span>
+            <span class="nav-icon-wrapper">
+                <i class="fas fa-house"></i>
+            </span>
             <span class="nav-label">خانه</span>
         </button>
         <button class="nav-item" data-page="page-appointments">
-            <span class="nav-icon">📅</span>
+            <span class="nav-icon-wrapper">
+                <i class="fas fa-calendar-day"></i>
+            </span>
             <span class="nav-label">نوبت</span>
         </button>
         <button class="nav-item" data-page="page-social">
-            <span class="nav-icon">🌐</span>
+            <span class="nav-icon-wrapper">
+                <i class="fas fa-share-nodes"></i>
+            </span>
             <span class="nav-label">شبکه‌ها</span>
         </button>
         <button class="nav-item" data-page="page-contact">
-            <span class="nav-icon">📞</span>
+            <span class="nav-icon-wrapper">
+                <i class="fas fa-phone"></i>
+            </span>
             <span class="nav-label">تماس</span>
         </button>
         <button class="nav-item" data-page="page-account">
-            <span class="nav-icon">👤</span>
+            <span class="nav-icon-wrapper">
+                <i class="fas fa-user"></i>
+            </span>
             <span class="nav-label">حساب</span>
         </button>
     </nav>
 
     <script>
-        // ===== تغییر صفحه با کلیک روی منو =====
         document.addEventListener('DOMContentLoaded', function() {
             const navItems = document.querySelectorAll('.nav-item');
             const pages = document.querySelectorAll('.page');
 
             navItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    // حذف active از همه منوها
                     navItems.forEach(n => n.classList.remove('active'));
-                    // اضافه active به منوی کلیک شده
                     this.classList.add('active');
 
-                    // مخفی کردن همه صفحات
                     pages.forEach(p => p.classList.remove('active'));
-
-                    // نمایش صفحه مربوطه
                     const pageId = this.dataset.page;
                     document.getElementById(pageId).classList.add('active');
                 });
